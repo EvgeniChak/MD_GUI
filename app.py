@@ -43,7 +43,7 @@ class MDApp(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Medical Dispenser GUI")
-        self.geometry("1280x720")
+        self.geometry("700x350")
         self.resizable(True, True)
 
         self.order: dict[str, int] = {}
@@ -78,7 +78,7 @@ class MDApp(ctk.CTk):
             self.after_cancel(self._timer_id)
             self._timer_id = None
 
-        if hasattr(self.screens.get("Goodbye", None), "cancel_timer"):
+        if hasattr(self.screens.get("Goodbye"), "cancel_timer"):
             self.screens["Goodbye"].cancel_timer()
         self.screens[name].tkraise()
         self._reset_timer()

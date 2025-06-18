@@ -2,13 +2,13 @@
 import customtkinter as ctk
 
 # GLOBAL THEME
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("green")
 
 # COLORS
 MAIN_GREEN = "#35af4c"
 HOVER_GREEN = "#56cf5b"
-TEXT_GREEN = "#d0ffb2"
+TEXT_GREEN = "#56cf5b"
 BORDER_GREY = "#333"
 BG_DARK = "#232423"
 BG_DARKER = "#181919"

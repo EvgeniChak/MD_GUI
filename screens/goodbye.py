@@ -29,6 +29,6 @@ class Goodbye(ctk.CTkFrame):
         self._return_id = self.after(3000, lambda: app.show("Welcome"))
 
     def cancel_timer(self):
-        if hasattr(self, "_return_id") and self._return_id:
+        if getattr(self, "_return_id", None):
             self.after_cancel(self._return_id)
             self._return_id = None
