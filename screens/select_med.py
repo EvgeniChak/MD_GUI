@@ -1,43 +1,60 @@
-import tkinter as tk
-from tkinter import ttk
+import customtkinter as ctk
 from config import PILLS
 from messages import MESSAGES
+from style import FONT_SUBTITLE, FONT_NORMAL, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
 
-class SelectMed(tk.Frame):
+class SelectMed(ctk.CTkFrame):
+    """Medication selection screen."""
+
     def __init__(self, parent, app):
-        super().__init__(parent, bg="white")
+        super().__init__(parent, fg_color="transparent")
         self.app = app
 
-        tk.Label(
-            self, text=MESSAGES.select_med_title,
-            bg="white", font=("Arial", 18)
-        ).pack(pady=10)
+        ctk.CTkLabel(
+            self,
+            text=MESSAGES.select_med_title,
+            font=FONT_SUBTITLE,
+            anchor="center"
+        ).pack(pady=14)
 
-        grid = ttk.Frame(self, padding=10)
-        grid.pack()
+        # Таблица лекарств (4x4)
+        grid = ctk.CTkFrame(self, fg_color="transparent")
+        grid.pack(pady=12)
 
         sorted_items = sorted(PILLS.items(), key=lambda kv: kv[1]["name"])
         for idx, (code, meta) in enumerate(sorted_items):
-            row, col = divmod(idx, 4)          # 4×4 как в презентации
-            btn = ttk.Button(
-                grid, width=20,
+            row, col = divmod(idx, 4)
+            ctk.CTkButton(
+                grid,
                 text=meta["name"],
+                width=160, height=54,
+                font=FONT_NORMAL,
+                fg_color=MAIN_GREEN,
+                hover_color=HOVER_GREEN,
                 command=lambda c=code: self._choose(c)
-            )
-            btn.grid(row=row, column=col, padx=6, pady=6)
+            ).grid(row=row, column=col, padx=12, pady=8)
 
-        bottom = tk.Frame(self, bg="white")  # ← tk.Frame
-        bottom.pack(fill="x", pady=10)
-
-        ttk.Checkbutton(
-            bottom, text=MESSAGES.json_mode,
-            variable=app.json_mode
-        ).pack(side="left", padx=10)
-
-        ttk.Button(
-            bottom, text=MESSAGES.summary_button, width=12,
+        # Bottom bar
+        bar = ctk.CTkFrame(self, fg_color="transparent")
+        bar.pack(fill="x", pady=12)
+        ctk.CTkCheckBox(
+            bar,
+            text=MESSAGES.json_mode,
+            variable=app.json_mode,
+            font=FONT_NORMAL,
+            fg_color=MAIN_GREEN,
+            border_color=HOVER_GREEN,
+        ).pack(side="left", padx=12)
+        ctk.CTkButton(
+            bar,
+            text=MESSAGES.summary_button,
+            width=BTN_WIDTH // 1.3,
+            height=BTN_HEIGHT // 1.3,
+            font=FONT_NORMAL,
+            fg_color="#222",
+            hover_color=MAIN_GREEN,
             command=lambda: app.show("Summary")
-        ).pack(side="right", padx=10)
+        ).pack(side="right", padx=12)
 
     def _choose(self, code):
         self.app.current_pill = code

@@ -1,19 +1,31 @@
-import tkinter as tk
-from tkinter import ttk
+import customtkinter as ctk
 from messages import MESSAGES
+from style import FONT_TITLE, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
 
-GOODBYE_MS = 3_000  # 3 с
+class Goodbye(ctk.CTkFrame):
+    """Goodbye/thank you screen after sending order."""
 
-class Goodbye(tk.Frame):
     def __init__(self, parent, app):
-        super().__init__(parent, bg="white")
+        super().__init__(parent, fg_color="transparent")
         self.app = app
 
-        ttk.Label(self, text=MESSAGES.goodbye_title, background="white",
-                  font=("Arial", 20)).pack(pady=60)
+        ctk.CTkLabel(
+            self,
+            text=MESSAGES.goodbye_title,
+            font=FONT_TITLE,
+            text_color=MAIN_GREEN,
+            anchor="center"
+        ).pack(pady=80)
 
-        ttk.Button(self, text=MESSAGES.back_main, width=18,
-                   command=lambda: app.show("Welcome")).pack()
+        ctk.CTkButton(
+            self,
+            text=MESSAGES.back_main,
+            width=BTN_WIDTH,
+            height=BTN_HEIGHT,
+            font=("Arial", 18),
+            fg_color="#222",
+            hover_color=MAIN_GREEN,
+            command=lambda: app.show("Welcome")
+        ).pack(pady=8)
 
-        # авто-возврат
-        self.after(GOODBYE_MS, lambda: app.show("Welcome"))
+        self.after(3000, lambda: app.show("Welcome"))
