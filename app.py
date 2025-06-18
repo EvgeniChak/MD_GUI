@@ -62,6 +62,9 @@ class MDApp(ctk.CTk):
         goodbye = self.screens.get("Goodbye")
         if hasattr(goodbye, "cancel_timer"):
             goodbye.cancel_timer()
+        if name == "NameInput":
+            if hasattr(self.screens["NameInput"], "clear"):
+                self.screens["NameInput"].clear()
         self.screens[name].tkraise()
         self._reset_timer()
 

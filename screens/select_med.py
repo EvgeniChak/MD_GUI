@@ -36,14 +36,7 @@ class SelectMed(ctk.CTkFrame):
         # Bottom bar
         bar = ctk.CTkFrame(self, fg_color="transparent")
         bar.pack(fill="x", pady=12)
-        ctk.CTkCheckBox(
-            bar,
-            text=MESSAGES.json_mode,
-            variable=app.json_mode,
-            font=FONT_NORMAL,
-            fg_color=MAIN_GREEN,
-            border_color=HOVER_GREEN,
-        ).pack(side="left", padx=12)
+
         ctk.CTkButton(
             bar,
             text=MESSAGES.summary_button,

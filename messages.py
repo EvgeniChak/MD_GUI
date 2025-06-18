@@ -9,10 +9,11 @@ _MESSAGES = {
     "name_placeholder": "Full name",
     "name_next": "Next",
     "back_main": "Back to main",
+    "json_mode": "JSON mode",
 
     # SelectMed
     "select_med_title": "Which medication do you need?",
-    "json_mode": "JSON mode",
+
     "summary_button": "Next",
 
     # Quantity
