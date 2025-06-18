@@ -1,12 +1,8 @@
-# app.py — версия с ttkbootstrap
-
+import customtkinter as ctk
 import json
 import queue
 import threading
-from tkinter import messagebox  # messagebox остаётся из стандартного tkinter
-
-import ttkbootstrap as ttkb  # главный импорт темы
-from ttkbootstrap import ttk  # drop‑in ttk‑виджеты
+from tkinter import messagebox
 
 from config import PILLS
 from messages import MESSAGES
@@ -20,10 +16,12 @@ from screens import (
     Goodbye,
 )
 
-# === ПАРАМЕТРЫ ТЕМЫ ================================================
-THEME_NAME = "cosmo"   # можно заменить на cosmo, darkly, morph и др.
-TIMEOUT_MS = 30_000      # 30 с глобальный тайм‑аут
-GOODBYE_MS = 3_000       # 3 с авто‑возврат с экрана Goodbye
+# === ГЛОБАЛЬНЫЕ ПАРАМЕТРЫ =========================================
+ctk.set_appearance_mode("dark")            # dark theme
+ctk.set_default_color_theme("green")       # green accent
+
+TIMEOUT_MS = 30_000
+GOODBYE_MS = 3_000
 
 
 # ---------- UART‑поток ---------------------------------------------
@@ -32,7 +30,7 @@ class SerialWorker(threading.Thread):
         super().__init__(daemon=True)
         self.tx_q = tx_q
         try:
-            import serial  # локальный импорт, чтобы не ломаться без пакета
+            import serial
             self.ser = serial.Serial(port="COM3", baudrate=115200, timeout=1)
         except Exception:
             self.ser = None
@@ -46,11 +44,10 @@ class SerialWorker(threading.Thread):
 
 
 # ---------- Главное приложение -------------------------------------
-class MDApp(ttkb.Window):  # наследуемся от themed Window
+class MDApp(ctk.CTk):  # теперь наследуемся от customtkinter.CTk
     def __init__(self):
-        super().__init__(themename=THEME_NAME)
+        super().__init__()
 
-        # базовые атрибуты окна
         self.title("Medical Dispenser GUI")
         self.geometry("900x550")
         self.resizable(False, False)
@@ -58,17 +55,15 @@ class MDApp(ttkb.Window):  # наследуемся от themed Window
         # состояние заказа
         self.order: dict[str, int] = {}
         self.current_pill: str | None = None
-        self.json_mode = ttkb.BooleanVar(value=False)
+        self.json_mode = ctk.BooleanVar(value=False)
 
-        # таймер бездействия
         self._timer_id: str | None = None
 
-        # очередь TX + UART‑поток
         self.tx_q: queue.Queue[str] = queue.Queue()
         SerialWorker(self.tx_q).start()
 
-        # контейнер экранов
-        container = ttkb.Frame(self)
+        # Контейнер для экранов
+        container = ctk.CTkFrame(self, fg_color="transparent")
         container.pack(fill="both", expand=True)
 
         self.screens = {}
@@ -123,4 +118,3 @@ class MDApp(ttkb.Window):  # наследуемся от themed Window
         self.clear_order()
         messagebox.showinfo(MESSAGES.timeout_message, MESSAGES.timeout_message)
         self.show("Welcome")
-
