@@ -9,21 +9,28 @@ class Welcome(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.app = app
 
-        ctk.CTkLabel(
-            self,
+        # 1. Создай фрейм-контейнер, который заполняет всё пространство
+        center = ctk.CTkFrame(self, fg_color="transparent")
+        center.pack(expand=True, fill="both")
+
+        # 2. Центруем всё в этом фрейме с помощью .place(relx, rely, anchor)
+        label = ctk.CTkLabel(
+            center,
             text=MESSAGES.welcome_title,
             font=FONT_TITLE,
             text_color=TEXT_GREEN,
             anchor="center"
-        ).pack(pady=80)
+        )
+        label.place(relx=0.5, rely=0.4, anchor="center")
 
-        ctk.CTkButton(
-            self,
-            text=MESSAGES.start_button,
+        start_btn = ctk.CTkButton(
+            center,
+            text=MESSAGES.start_btn,
             width=BTN_WIDTH,
             height=BTN_HEIGHT,
             font=("Arial", 20, "bold"),
             fg_color=MAIN_GREEN,
             hover_color=HOVER_GREEN,
             command=lambda: app.show("NameInput")
-        ).pack(pady=16)
+        )
+        start_btn.place(relx=0.5, rely=0.6, anchor="center")

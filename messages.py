@@ -4,7 +4,7 @@ from types import SimpleNamespace
 _MESSAGES = {
     # Welcome / Name
     "welcome_title": "Hello! I'm your medication assistant robot",
-    "start_button": "Next",
+    "start_btn": "Next",
     "name_title": "Please write your full name\nor insert ID card",
     "name_placeholder": "Full name",
     "name_next": "Next",

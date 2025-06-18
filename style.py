@@ -19,8 +19,9 @@ TEXT_GREY = "#bbb"
 FONT_TITLE = ("Arial", 26, "bold")
 FONT_SUBTITLE = ("Arial", 18)
 FONT_NORMAL = ("Arial", 16)
-FONT_BUTTON = ("Arial", 20, "bold")
+FONT_BTN = ("Arial", 20, "bold")
 FONT_MEDIUM = ("Arial", 14)
+
 
 # BUTTON SIZES
 BTN_WIDTH = 180

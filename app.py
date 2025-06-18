@@ -74,6 +74,10 @@ class MDApp(ctk.CTk):
 
     def show(self, name: str):
         """Navigate to screen by name and reset inactivity timer."""
+        # --- отменяем все pending таймеры ---
+        if self._timer_id:
+            self.after_cancel(self._timer_id)
+            self._timer_id = None
         self.screens[name].tkraise()
         self._reset_timer()
 
