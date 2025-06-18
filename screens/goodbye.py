@@ -6,29 +6,38 @@ class Goodbye(ctk.CTkFrame):
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="transparent")
         self.app = app
+        self._timer = None
+
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+
+        center = ctk.CTkFrame(self, fg_color="transparent")
+        center.grid(row=0, column=0, sticky="nsew")
+
+        center.grid_rowconfigure((0,1), weight=1)
+        center.grid_columnconfigure(0, weight=1)
 
         ctk.CTkLabel(
-            self,
+            center,
             text=MESSAGES.goodbye_title,
             font=FONT_TITLE,
             text_color=MAIN_GREEN,
             anchor="center"
-        ).pack(pady=80)
+        ).grid(row=0, column=0, sticky="s")
 
         ctk.CTkButton(
-            self,
+            center,
             text=MESSAGES.back_main,
             width=BTN_WIDTH,
             height=BTN_HEIGHT,
-            font=("Arial", 18),
             fg_color="#222",
             hover_color=MAIN_GREEN,
             command=lambda: app.show("Welcome")
-        ).pack(pady=8)
+        ).grid(row=1, column=0, pady=10, sticky="n")
 
-        self._return_id = self.after(3000, lambda: app.show("Welcome"))
+        self._timer = self.after(3000, lambda: app.show("Welcome"))
 
     def cancel_timer(self):
-        if getattr(self, "_return_id", None):
-            self.after_cancel(self._return_id)
-            self._return_id = None
+        if self._timer:
+            self.after_cancel(self._timer)
+            self._timer = None
