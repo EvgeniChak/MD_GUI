@@ -5,6 +5,7 @@ from style import (
     BTN_WIDTH, BTN_HEIGHT,
     MAIN_GREEN, HOVER_GREEN, centered_container
 )
+from screens.components.buttons import OutlinedButton
 
 class NameInput(ctk.CTkFrame):
 
@@ -33,6 +34,8 @@ class NameInput(ctk.CTkFrame):
 
         btns = ctk.CTkFrame(center, fg_color="transparent")
         btns.grid(row=2, column=0, pady=20)
+
+
 
         ctk.CTkButton(
             btns,

@@ -1,6 +1,5 @@
 import json, queue, threading
 import customtkinter as ctk
-from tkinter import messagebox
 
 from config import PILLS
 from style import WINDOW_SIZE

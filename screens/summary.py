@@ -2,6 +2,7 @@ import customtkinter as ctk
 from config import PILLS
 from messages import MESSAGES
 from style import FONT_SUBTITLE, FONT_NORMAL, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN, centered_container
+from screens.components.order_preview import render_order
 
 class Summary(ctk.CTkFrame):
 
@@ -48,34 +49,14 @@ class Summary(ctk.CTkFrame):
             command=self._send
         ).grid(row=0, column=1, padx=20)
 
-        # Строка с командой (json/serial)
-        self.cmd_label = ctk.CTkLabel(center, text="", font=FONT_NORMAL)
-        self.cmd_label.grid(row=3, column=0, pady=10)
-
-
-
     def tkraise(self, *args, **kwargs):
         super().tkraise(*args, **kwargs)
-        # Clear box
-        for w in self.box.winfo_children():
-            w.destroy()
-
-        for i, (code, qty) in enumerate(self.app.order.items(), 1):
-            ctk.CTkLabel(
-                self.box,
-                text=f"{i}. {PILLS[code]['name']}",
-                width=220, font=FONT_NORMAL, anchor="w"
-            ).grid(row=i, column=0, sticky="w")
-            ctk.CTkLabel(
-                self.box, text=f"×{qty}", width=60, font=FONT_NORMAL
-            ).grid(row=i, column=1, sticky="e")
-
         cmd = (
             self.app.build_json()
             if self.app.json_mode.get()
             else self.app.build_serial()
         )
-        self.cmd_label.configure(text=cmd)
+        render_order(self.box, self.app.order, show_cmd=True, cmd=cmd)
 
     def _send(self):
         self.app.send_order()
@@ -84,3 +65,10 @@ class Summary(ctk.CTkFrame):
     def _cancel(self):
         self.app.clear_order()
         self.app.show("Welcome")
+
+    def _build_cmd(self) -> str:
+        return (
+            self.app.build_json()
+            if self.app.json_mode.get()
+            else self.app.build_serial()
+        )

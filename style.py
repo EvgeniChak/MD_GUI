@@ -1,13 +1,16 @@
 import customtkinter as ctk
 from typing import Sequence
 
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("system")
 ctk.set_default_color_theme("green")
 
 WINDOW_SIZE = (750, 450)
 MAIN_GREEN = "#35af4c"
 HOVER_GREEN = "#56cf5b"
 TEXT_GREEN = "#d0ffb2"
+DEF_TEXT_COLOR = "#FFFFFF"
+MAIN_GREY = "#222",
+HOVER_GREY = "#444",
 FONT_TITLE = ("Arial", 26, "bold")
 FONT_SUBTITLE = ("Arial", 18)
 FONT_NORMAL = ("Arial", 16)
