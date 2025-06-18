@@ -5,7 +5,7 @@ import customtkinter as ctk
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("green")
 
-# COLORS (можно менять здесь)
+# COLORS
 MAIN_GREEN = "#35af4c"
 HOVER_GREEN = "#56cf5b"
 TEXT_GREEN = "#d0ffb2"

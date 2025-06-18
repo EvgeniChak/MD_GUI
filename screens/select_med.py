@@ -4,7 +4,6 @@ from messages import MESSAGES
 from style import FONT_SUBTITLE, FONT_NORMAL, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
 
 class SelectMed(ctk.CTkFrame):
-    """Medication selection screen."""
 
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="transparent")
@@ -17,7 +16,7 @@ class SelectMed(ctk.CTkFrame):
             anchor="center"
         ).pack(pady=14)
 
-        # Таблица лекарств (4x4)
+        # table
         grid = ctk.CTkFrame(self, fg_color="transparent")
         grid.pack(pady=12)
 

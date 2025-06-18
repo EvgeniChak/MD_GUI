@@ -3,8 +3,6 @@ from messages import MESSAGES
 from style import FONT_TITLE, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
 
 class Goodbye(ctk.CTkFrame):
-    """Goodbye/thank you screen after sending order."""
-
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="transparent")
         self.app = app
@@ -28,4 +26,9 @@ class Goodbye(ctk.CTkFrame):
             command=lambda: app.show("Welcome")
         ).pack(pady=8)
 
-        self.after(3000, lambda: app.show("Welcome"))
+        self._return_id = self.after(3000, lambda: app.show("Welcome"))
+
+    def cancel_timer(self):
+        if hasattr(self, "_return_id") and self._return_id:
+            self.after_cancel(self._return_id)
+            self._return_id = None

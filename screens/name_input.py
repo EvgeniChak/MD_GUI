@@ -3,7 +3,6 @@ from messages import MESSAGES
 from style import FONT_SUBTITLE, FONT_MEDIUM, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
 
 class NameInput(ctk.CTkFrame):
-    """Name input screen for the Medical Dispenser GUI."""
 
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="transparent")

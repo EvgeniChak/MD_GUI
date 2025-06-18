@@ -4,7 +4,7 @@ from messages import MESSAGES
 from style import FONT_SUBTITLE, FONT_NORMAL, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
 
 class Quantity(ctk.CTkFrame):
-    """Quantity selection screen."""
+
 
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="transparent")
