@@ -1,10 +1,10 @@
 import customtkinter as ctk
 from typing import Sequence
 
-ctk.set_appearance_mode("system")
+ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("green")
 
-WINDOW_SIZE = (750, 450)
+WINDOW_SIZE = (750, 400)
 MAIN_GREEN = "#35af4c"
 HOVER_GREEN = "#56cf5b"
 TEXT_GREEN = "#d0ffb2"

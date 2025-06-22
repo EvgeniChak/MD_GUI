@@ -13,32 +13,23 @@ class Welcome(ctk.CTkFrame):
 
         center = centered_container(self, row_weights=(0, 1, 2))
 
-        ctk.CTkLabel(
+        self.label = ctk.CTkLabel(
             center,
             text=MESSAGES.welcome_title,
             font=FONT_TITLE
-        ).grid(row=0, column=0, pady=(0, 10), sticky="s")
-
+        )
         self.start_button = OutlinedButton(
             center,
             text=MESSAGES.start_btn,
             command=lambda: app.show("NameInput")
         )
-        self.start_button.grid(row=1, column=0, pady=(10, 0), sticky="s")
 
-        # ctk.CTkButton(
-        #     center,
-        #     text=MESSAGES.start_btn,
-        #     width=BTN_WIDTH,
-        #     height=BTN_HEIGHT,
-        #     font=FONT_NORMAL,
-        #     fg_color=MAIN_GREEN,
-        #     hover_color=HOVER_GREEN,
-        #     command=lambda: app.show("NameInput")
-        # ).grid(row=1, column=0, pady=(0, 10), sticky="")
-
-        ctk.CTkCheckBox(
+        self.checkBox = ctk.CTkCheckBox(
             center,
             text=MESSAGES.json_mode,
             variable=app.json_mode
-        ).grid(row=2, column=0, pady=(10, 0))
+        )
+
+        self.label.grid(row=0, column=0, pady=20)
+        self.start_button.grid(row=1, column=0, pady=10)
+        self.checkBox.grid(row=2, column=0, pady=10, padx=10,sticky="SW")

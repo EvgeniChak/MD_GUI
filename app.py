@@ -83,7 +83,6 @@ class MDApp(ctk.CTk):
     def send_order(self):
         cmd = self.build_json() if self.json_mode.get() else self.build_serial()
         self.tx_q.put(cmd)
-        self.show("Goodbye")
 
     def _reset_timer(self):
         if self._timer_id:

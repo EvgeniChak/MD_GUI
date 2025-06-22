@@ -15,14 +15,9 @@ def render_order(
     for w in parent.winfo_children():
         w.destroy()
 
-    total = 0.0
 
     for i, (code, qty) in enumerate(order.items(), 1):
         name = PILLS[code]["name"]
-        price = PILLS[code].get("price", 0)
-        subtotal = price * qty
-        total += subtotal
-
         row = i - 1
 
         ctk.CTkLabel(
@@ -40,13 +35,6 @@ def render_order(
             width=40
         ).grid(row=row, column=1)
 
-        ctk.CTkLabel(
-            parent,
-            text=f"{subtotal:.2f} ₪",
-            font=FONT_NORMAL,
-            width=80
-        ).grid(row=row, column=2)
-
         if allow_delete and on_delete:
             ctk.CTkButton(
                 parent,
@@ -58,19 +46,11 @@ def render_order(
                 command=lambda c=code: on_delete(c)
             ).grid(row=row, column=3, padx=(6, 0))
 
-    # Итого
-    if total > 0:
-        ctk.CTkLabel(
-            parent,
-            text=f"{total:.2f} ₪",
-            font=FONT_SUBTITLE,
-            text_color=MAIN_GREEN
-        ).grid(row=i, column=0, columnspan=2, pady=10)
 
     if show_cmd:
         ctk.CTkLabel(
             parent,
             text=cmd,
-            font=FONT_MONO,
+            font=FONT_NORMAL,
             anchor="center"
         ).grid(row=i + 1, column=0, columnspan=4, pady=6)
