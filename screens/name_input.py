@@ -35,27 +35,15 @@ class NameInput(ctk.CTkFrame):
         btns = ctk.CTkFrame(center, fg_color="transparent")
         btns.grid(row=2, column=0, pady=20)
 
-
-
-        ctk.CTkButton(
+        self.back_btn = OutlinedButton(
             btns,
             text=MESSAGES.back_main,
-            width=BTN_WIDTH // 1.5,
-            height=BTN_HEIGHT,
-            font=FONT_MEDIUM,
-            fg_color=MAIN_GREEN,
-            hover_color=HOVER_GREEN,
             command=lambda: app.show("Welcome")
         ).grid(row=0, column=0, padx=16)
 
-        ctk.CTkButton(
+        self.next_btn = OutlinedButton(
             btns,
             text=MESSAGES.name_next,
-            width=BTN_WIDTH // 1.5,
-            height=BTN_HEIGHT,
-            font=FONT_MEDIUM,
-            fg_color=MAIN_GREEN,
-            hover_color=HOVER_GREEN,
             command=lambda: app.show("SelectMed")
         ).grid(row=0, column=1, padx=16)
 

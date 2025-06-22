@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from messages import *
-from style import BTN_WIDTH, BTN_HEIGHT, FONT_NORMAL, MAIN_GREEN
+from style import BTN_WIDTH, BTN_HEIGHT, FONT_NORMAL, MAIN_GREEN, DEF_TEXT_COLOR
 
 
 class DefButton(ctk.CTkButton):
@@ -19,15 +19,15 @@ class DefButton(ctk.CTkButton):
         )
 
 class OutlinedButton(ctk.CTkButton):
-    def __init__(self, master, text, fg=("#222", "#666"), border=MAIN_GREEN,text_color="white", **kwargs):
+    def __init__(self, master, text, fg=("#222", "#666"), border=MAIN_GREEN,text_color="white", width = BTN_WIDTH, height = BTN_HEIGHT, **kwargs):
         super().__init__(
             master,
             text=text,
             font=FONT_NORMAL,
-            width=BTN_WIDTH,
-            height=BTN_HEIGHT,
             fg_color=fg[0],
             hover_color=fg[1],
+            width = width,
+            height = height,
             text_color=text_color,
             border_color=border,
             border_width=2,

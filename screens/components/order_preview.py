@@ -11,12 +11,6 @@ def render_order(
     allow_delete: bool = False,
     on_delete: callable = None
 ):
-    """
-    Отображает список заказа с опциями:
-    - show_cmd: показать json/serial строку
-    - allow_delete: показать кнопку удаления рядом с каждой строкой
-    - on_delete(code): коллбек при нажатии на удаление
-    """
 
     for w in parent.winfo_children():
         w.destroy()

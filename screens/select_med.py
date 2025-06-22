@@ -2,6 +2,7 @@ import customtkinter as ctk
 from config import PILLS
 from messages import MESSAGES
 from style import FONT_SUBTITLE, FONT_NORMAL, BTN_WIDTH, BTN_HEIGHT, MAIN_GREEN, HOVER_GREEN
+from screens.components.buttons import OutlinedButton
 
 class SelectMed(ctk.CTkFrame):
 
@@ -23,13 +24,10 @@ class SelectMed(ctk.CTkFrame):
         sorted_items = sorted(PILLS.items(), key=lambda kv: kv[1]["name"])
         for idx, (code, meta) in enumerate(sorted_items):
             row, col = divmod(idx, 4)
-            ctk.CTkButton(
+            self.select_med_btn = OutlinedButton(
                 grid,
                 text=meta["name"],
                 width=160, height=54,
-                font=FONT_NORMAL,
-                fg_color=MAIN_GREEN,
-                hover_color=HOVER_GREEN,
                 command=lambda c=code: self._choose(c)
             ).grid(row=row, column=col, padx=12, pady=8)
 
@@ -37,16 +35,11 @@ class SelectMed(ctk.CTkFrame):
         bar = ctk.CTkFrame(self, fg_color="transparent")
         bar.pack(fill="x", pady=12)
 
-        ctk.CTkButton(
+        self.summary_btn = OutlinedButton(
             bar,
             text=MESSAGES.summary_button,
-            width=BTN_WIDTH // 1.3,
-            height=BTN_HEIGHT // 1.3,
-            font=FONT_NORMAL,
-            fg_color="#222",
-            hover_color=MAIN_GREEN,
             command=lambda: app.show("Summary")
-        ).pack(side="right", padx=12)
+        ).grid(row=1, column=0, pady=(10, 0), sticky="s")
 
     def _choose(self, code):
         self.app.current_pill = code

@@ -7,6 +7,7 @@ from style import (
     MAIN_GREEN, HOVER_GREEN, centered_container, MAIN_GREY, HOVER_GREY
 )
 from screens.components.order_preview import render_order
+from screens.components.buttons import OutlinedButton
 
 
 
@@ -24,9 +25,6 @@ class AddMore(ctk.CTkFrame):
             font=FONT_SUBTITLE,
             anchor="center"
         ).grid(row=0, column=0, pady=(0, 8))
-
-        self.box = ctk.CTkFrame(center, fg_color="transparent")
-        self.box.grid(row=1, column=0, pady=4)
 
         btns = ctk.CTkFrame(center, fg_color="transparent")
         btns.grid(row=2, column=0, pady=10)
