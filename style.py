@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from typing import Sequence
 
-ctk.set_appearance_mode("light")
+ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("green")
 
 WINDOW_SIZE = (750, 400)
@@ -30,7 +30,6 @@ def centered_container(
     center = ctk.CTkFrame(frame, fg_color="transparent")
     center.grid(row=0, column=0, sticky=sticky)
 
-    # Make internal rows and columns expandable
     for r in row_weights:
         center.grid_rowconfigure(r, weight=1)
     for c in col_weights:

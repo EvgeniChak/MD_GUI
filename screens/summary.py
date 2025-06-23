@@ -42,7 +42,7 @@ class Summary(ctk.CTkFrame):
         self.cancel_btn.grid(row=1, column=0, pady=10)
         self.send_btn.grid(row=1, column=1, padx=20)
 
-        self.cmd_label.grid(row=3, column=0, pady=(10, 4), sticky="s")
+        self.cmd_label.grid(row=3, column=0, pady=10, padx=10,sticky="SW")
 
 
 
